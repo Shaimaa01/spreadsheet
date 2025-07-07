@@ -10,7 +10,7 @@
     --color-Gray-200: #EEEEEE;
     --color-Gray-400: #AFAFAF;
     --color-Gray-500: #757575;
-    --color-Gray-600: #4b5563;
+    --color-Gray-600: #545454;
     --color-Gray-700: #374151;
     --color-Gray-900: #111827;
     --color-Gray-950: #121212;
@@ -21,7 +21,7 @@
     --color-Green-600: #618666;
     --color-Green-700: #15803d;
     --color-Green-800: #047857;
-     --color-Green-900: #4B6A4F;
+    --color-Green-900: #4B6A4F;
 
     /* Blues */
     --color-Blue-500: #3b82f6;
@@ -36,5 +36,5 @@
     --color-Red-500: #ef4444;
     --color-Red-700: #b91c1c;
 
-     --font-figtree: "Figtree", sans-serif; 
+    --font-figtree: "Figtree", sans-serif;
 }
