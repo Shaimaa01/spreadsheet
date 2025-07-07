@@ -1,1 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-White: #ffffff;
+
+    /* Grays */
+    --color-Gray-50: #f6f6f6;
+    --color-Gray-100: #f3f4f6;
+    --color-Gray-200: #EEEEEE;
+    --color-Gray-400: #AFAFAF;
+    --color-Gray-500: #757575;
+    --color-Gray-600: #4b5563;
+    --color-Gray-700: #374151;
+    --color-Gray-900: #111827;
+    --color-Gray-950: #121212;
+
+    /* Greens */
+    --color-Green-200: #d1fae5;
+    --color-Green-500: #22c55e;
+    --color-Green-600: #618666;
+    --color-Green-700: #15803d;
+    --color-Green-800: #047857;
+     --color-Green-900: #4B6A4F;
+
+    /* Blues */
+    --color-Blue-500: #3b82f6;
+
+    /* Yellows & Ambers */
+    --color-Amber-200: #fef3c7;
+    --color-Amber-500: #f59e0b;
+    --color-Amber-700: #b45309;
+
+    /* Reds */
+    --color-Red-200: #fee2e2;
+    --color-Red-500: #ef4444;
+    --color-Red-700: #b91c1c;
+
+     --font-figtree: "Figtree", sans-serif; 
+}
