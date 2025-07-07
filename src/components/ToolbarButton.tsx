@@ -28,6 +28,7 @@ export const ToolbarButton = ({
   return (
     <button
       onClick={onClick}
+      onKeyDown={(e) => e.key === 'Enter' && onClick()}
       className={`${baseClasses} ${getVariantClasses()}`}
     >
       <img src={icon} alt="" className="h-4 w-4" />
