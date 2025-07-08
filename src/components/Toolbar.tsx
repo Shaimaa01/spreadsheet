@@ -38,9 +38,9 @@ export const Toolbar = () => {
         </button>
         <div className="bg-Gray-200 h-[24px] w-px" />
 
-        {leftButtons.map((button, index) => (
+        {leftButtons.map((button) => (
           <ToolbarButton
-            key={index}
+           key={button.action}
             onClick={() => handleClick(button.action)}
             icon={button.icon}
           >
@@ -51,9 +51,9 @@ export const Toolbar = () => {
 
       {/* Right Side */}
       <div className="flex items-center gap-[8px]">
-        {rightButtons.map((button, index) => (
+        {rightButtons.map((button) => (
           <ToolbarButton
-            key={index}
+           key={button.action}
             onClick={() => handleClick(button.action)}
             icon={button.icon}
             variant="outlined"
