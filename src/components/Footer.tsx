@@ -1,4 +1,5 @@
 import AddIcon from '@/icons/AddIcon';
+import { type FooterButtonProps } from '@/types/declarations';
 
 const buttons = [
   { label: 'All Orders', isActive: true },
@@ -8,17 +9,7 @@ const buttons = [
   { icon: <AddIcon />, isIcon: true },
 ];
 
-const FooterButton = ({
-  label,
-  icon,
-  isActive,
-  isIcon,
-}: {
-  label?: string;
-  icon?: React.ReactNode;
-  isActive?: boolean;
-  isIcon?: boolean;
-}) => {
+const FooterButton = ({ label, icon, isActive, isIcon }: FooterButtonProps) => {
   const base = 'text-[16px] leading-[24px] text-Gray-500 font-medium';
   const active =
     'bg-Green-50 border-t-[2px] border-Green-900 text-Green-500 font-semibold';

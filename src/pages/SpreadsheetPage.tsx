@@ -8,7 +8,6 @@ export const SpreadsheetPage: React.FC = () => {
       <Header />
       <Toolbar />
       <SpreadsheetGrid />
-      <main className="flex-grow"></main>
     </div>
   );
 };

@@ -5,8 +5,13 @@ import dots from '@/assets/dots-icon.svg';
 import search from '@/assets/search-icon.svg';
 import alert from '@/assets/alert-icon.svg';
 import avatar from '@/assets/avatar.png';
+import {
+  type NotificationBadgeProps,
+  type SearchInputProps,
+  type UserProfileProps,
+} from '@/types/declarations';
 
-const NotificationBadge = ({ count }: { count: number }) => {
+const NotificationBadge = ({ count }: NotificationBadgeProps) => {
   if (count === 0) return null;
 
   const displayCount = count > 99 ? '99+' : count.toString();
@@ -18,7 +23,7 @@ const NotificationBadge = ({ count }: { count: number }) => {
   );
 };
 
-const SearchInput = ({ onSearch }: { onSearch: (value: string) => void }) => {
+const SearchInput = ({ onSearch }: SearchInputProps) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,15 +57,7 @@ const SearchInput = ({ onSearch }: { onSearch: (value: string) => void }) => {
   );
 };
 
-const UserProfile = ({
-  name,
-  email,
-  avatarSrc,
-}: {
-  name: string;
-  email: string;
-  avatarSrc: string;
-}) => {
+const UserProfile = ({ name, email, avatarSrc }: UserProfileProps) => {
   return (
     <div className="flex items-center gap-[8px] py-[6px] pr-[12px] pl-[8px]">
       <div className="h-[28px] w-[28px] overflow-hidden rounded-full">
@@ -94,7 +91,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="border-Gray-200 flex w-full h-[56px] items-center justify-between border-b px-[16px] py-[8px]">
+    <header className="border-Gray-200 flex h-[56px] w-full items-center justify-between border-b px-[16px] py-[8px]">
       {/* Left Side: Breadcrumbs */}
       <div className="flex items-center gap-[16px]">
         <img

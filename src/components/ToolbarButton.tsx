@@ -1,9 +1,4 @@
-type ToolbarButtonProps = {
-  icon: string;
-  children: React.ReactNode;
-  onClick: () => void;
-  variant?: 'default' | 'primary' | 'outlined';
-};
+import type { ToolbarButtonProps } from "@/types/declarations";
 
 export const ToolbarButton = ({
   icon,

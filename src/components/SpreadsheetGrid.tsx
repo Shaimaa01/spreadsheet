@@ -4,7 +4,7 @@ import {
   createColumnHelper,
   flexRender,
 } from '@tanstack/react-table';
-import { mockData, type Task } from '@/data/mockData.ts';
+import { mockData } from '@/data/mockData.ts';
 import { useMemo, useState } from 'react';
 import { useDynamicRowCount } from '@/hooks/useDynamicRowCount';
 import { extractCurrency } from '@/utils/extractCurrency';
@@ -22,21 +22,11 @@ import refresh from '@/assets/refresh-icon.svg';
 import { ArrowSplit } from '@/icons/ArrowSplit';
 import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/dropdown-icon.svg';
-
-interface BaseHeaderProps {
-  icon?: string;
-  label: string;
-  hasDropdown?: boolean;
-  bgColor?: string;
-  textColor?: string;
-  width?: string;
-}
-
-interface ActionGroupHeaderProps {
-  action: keyof typeof actionGroupStyles;
-  label: string;
-  icon?: React.ReactNode;
-}
+import {
+  type BaseHeaderProps,
+  type ActionGroupHeaderProps,
+  type Task,
+} from '@/types/declarations';
 
 const BaseHeader = ({
   icon,
