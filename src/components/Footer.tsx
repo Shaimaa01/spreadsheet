@@ -1,8 +1,9 @@
 import AddIcon from '@/icons/AddIcon';
 import { type FooterButtonProps } from '@/types/declarations';
+import { useState } from 'react';
 
 const buttons = [
-  { label: 'All Orders', isActive: true },
+  { label: 'All Orders' },
   { label: 'Pending' },
   { label: 'Review' },
   { label: 'Arrived' },
@@ -23,10 +24,27 @@ const FooterButton = ({ label, icon, isActive, isIcon }: FooterButtonProps) => {
 };
 
 export const Footer = () => {
+  const [activeTab, setActiveTab] = useState('All Orders');
+
+  const handleTabClick = (label: string) => {
+    setActiveTab(label);
+    console.log(`Footer tab clicked: ${label}`);
+  };
+
+  const handleAddClick = () => {
+    console.log('Add new sheet clicked!');
+  };
   return (
     <footer className="border-Gray-200 bg-White fixed right-0 bottom-0 left-0 flex h-[48px] items-center gap-[24px] border-t py-[4px] pr-[16px] pl-[32px]">
       {buttons.map((btn, i) => (
-        <FooterButton key={i} {...btn} />
+        <FooterButton
+          key={i}
+          {...btn}
+          onClick={
+            btn.label ? () => handleTabClick(btn.label!) : handleAddClick
+          }
+          isActive={activeTab === btn.label}
+        />
       ))}
     </footer>
   );

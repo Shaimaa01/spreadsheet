@@ -20,6 +20,7 @@ export type FooterButtonProps = {
   icon?: React.ReactNode;
   isActive?: boolean;
   isIcon?: boolean;
+  onClick?: () => void; 
 };
 
 export type ToolbarButtonProps = {
