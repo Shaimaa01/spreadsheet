@@ -7,7 +7,7 @@ import cellView from '@/assets/cellView-icon.svg';
 import importIcon from '@/assets/import-icon.svg';
 import exportIcon from '@/assets/export-icon.svg';
 import share from '@/assets/share-icon.svg';
-import arrowSplit from '@/assets/arrow-split-icon.svg';
+import { ArrowSplit } from '@/icons/ArrowSplit';
 
 const leftButtons = [
   { label: 'Hide fields', icon: eye, action: 'Hide fields' },
@@ -64,7 +64,7 @@ export const Toolbar = () => {
 
         <ToolbarButton
           onClick={() => handleClick('New Action')}
-          icon={arrowSplit}
+          icon={<ArrowSplit/>}
           variant="primary"
         >
           New Action

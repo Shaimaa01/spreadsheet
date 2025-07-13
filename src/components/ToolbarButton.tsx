@@ -1,4 +1,4 @@
-import type { ToolbarButtonProps } from "@/types/declarations";
+import type { ToolbarButtonProps } from '@/types/declarations';
 
 export const ToolbarButton = ({
   icon,
@@ -25,7 +25,11 @@ export const ToolbarButton = ({
       onClick={onClick}
       className={`${baseClasses} ${getVariantClasses()}`}
     >
-      <img src={icon} alt="" className="h-4 w-4" />
+      {typeof icon === 'string' ? (
+        <img src={icon} alt="" className="h-4 w-4" />
+      ) : (
+        icon
+      )}
       <span>{children}</span>
     </button>
   );

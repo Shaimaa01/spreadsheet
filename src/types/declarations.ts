@@ -24,7 +24,7 @@ export type FooterButtonProps = {
 };
 
 export type ToolbarButtonProps = {
-  icon: string;
+  icon: string | React.ReactNode; 
   children: React.ReactNode;
   onClick: () => void;
   variant?: 'default' | 'primary' | 'outlined';
