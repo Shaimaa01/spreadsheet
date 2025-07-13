@@ -55,3 +55,8 @@ export type UserProfileProps = {
   email: string;
   avatarSrc: string;
 };
+
+export type ActiveCell = {
+  row: number;
+  col: number;
+} | null;

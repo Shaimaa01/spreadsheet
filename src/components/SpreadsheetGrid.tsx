@@ -5,8 +5,9 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import { mockData } from '@/data/mockData.ts';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useDynamicRowCount } from '@/hooks/useDynamicRowCount';
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation'; 
 import { extractCurrency } from '@/utils/extractCurrency';
 import {
   statusConfig,
@@ -26,6 +27,7 @@ import {
   type BaseHeaderProps,
   type ActionGroupHeaderProps,
   type Task,
+  
 } from '@/types/declarations';
 
 const BaseHeader = ({
@@ -268,12 +270,9 @@ const columns = [
 ];
 
 export const SpreadsheetGrid = () => {
-  const [activeCell, setActiveCell] = useState<string | null>(null);
-  const getActiveCellStyles = (cellId: string) => {
-    return activeCell === cellId
-      ? 'outline outline-[#6C8B70] shadow-[0px_0px_12px_0px_#0A6E3D38,0px_0px_4px_-2px_#0A6E3D99]'
-      : '';
-  };
+  
+
+  
 
   const ROW_HEIGHT = 41;
   const { containerRef, rowCount } = useDynamicRowCount(ROW_HEIGHT);
@@ -291,9 +290,15 @@ export const SpreadsheetGrid = () => {
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-
+const { activeCell, setActiveCell, handleKeyDown } = useKeyboardNavigation(table);
+ const getActiveCellStyles = (rowIndex: number, colIndex: number) => {
+    if (!activeCell) return '';
+    return activeCell.row === rowIndex && activeCell.col === colIndex
+      ? 'outline outline-[#6C8B70] shadow-[...]'
+      : '';
+  };
   return (
-    <div ref={containerRef} className="bg-Gray-50 relative flex-grow">
+    <div ref={containerRef} onKeyDown={handleKeyDown}  tabIndex={0} className="bg-Gray-50 relative flex-grow outline-none">
       <table className="bg-White w-fit border-collapse">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -314,18 +319,18 @@ export const SpreadsheetGrid = () => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
+          {table.getRowModel().rows.map((row, rowIndex) => (
             <tr key={row.id} className="border-Gray-300 border-b">
-              {row.getVisibleCells().map((cell) => (
+              {row.getVisibleCells().map((cell, colIndex) => (
                 <td
                   key={cell.id}
-                  onClick={() => setActiveCell(cell.id)}
-                  // className="border-Gray-300 text-Gray-950 truncate overflow-hidden border-r p-[8px] text-[12px] leading-[16px] last:border-dashed nth-last-2:border-dashed"
+                  onClick={() => setActiveCell({ row: rowIndex, col: colIndex })}
+                 
                   className={`border-Gray-300 text-Gray-950 truncate border-r p-[8px] text-[12px] leading-[16px] last:border-dashed nth-last-2:border-dashed ${
                     cellSizeConfig[
                       cell.column.id as keyof typeof cellSizeConfig
                     ] || cellSizeConfig.default
-                  } ${getActiveCellStyles(cell.id)}`}
+                  } ${getActiveCellStyles(rowIndex, colIndex)}`}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
