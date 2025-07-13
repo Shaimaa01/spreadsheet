@@ -94,7 +94,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="border-Gray-200 flex h-[56px] items-center justify-between border-b px-[16px] py-[8px]">
+    <header className="border-Gray-200 flex w-full h-[56px] items-center justify-between border-b px-[16px] py-[8px]">
       {/* Left Side: Breadcrumbs */}
       <div className="flex items-center gap-[16px]">
         <img
