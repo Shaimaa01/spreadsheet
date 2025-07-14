@@ -1,7 +1,7 @@
-import { SpreadsheetPage } from './pages/SpreadsheetPage'
+import { SpreadsheetPage } from './pages/SpreadsheetPage';
 
 function App() {
-  return <SpreadsheetPage />
+  return <SpreadsheetPage />;
 }
 
-export default App
+export default App;

@@ -20,27 +20,27 @@ export type FooterButtonProps = {
   icon?: React.ReactNode;
   isActive?: boolean;
   isIcon?: boolean;
-  onClick?: () => void; 
+  onClick?: () => void;
 };
 
 export type ToolbarButtonProps = {
-  icon: string | React.ReactNode; 
+  icon: string | React.ReactNode;
   children: React.ReactNode;
   onClick: () => void;
   variant?: 'default' | 'primary' | 'outlined';
 };
 
 export type Task = {
-  jobRequest: string
-  submitted: string
-  status: 'In-process' | 'Need to start' | 'Complete' | 'Blocked'
-  submitter: string
-  url: string
-  assigned: string
-  priority: 'High' | 'Medium' | 'Low'
-  dueDate: string
-  estValue: string
-}
+  jobRequest: string;
+  submitted: string;
+  status: 'In-process' | 'Need to start' | 'Complete' | 'Blocked';
+  submitter: string;
+  url: string;
+  assigned: string;
+  priority: 'High' | 'Medium' | 'Low';
+  dueDate: string;
+  estValue: string;
+};
 
 export type NotificationBadgeProps = {
   count: number;

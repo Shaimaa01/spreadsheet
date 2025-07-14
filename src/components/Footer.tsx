@@ -10,14 +10,13 @@ const buttons = [
   { icon: <AddIcon />, isIcon: true },
 ];
 
-const FooterButton = ({ label, icon, isActive, isIcon , onClick }: FooterButtonProps) => {
+const FooterButton = ({ label, icon, isActive, isIcon, onClick }: FooterButtonProps) => {
   const base = 'text-[16px] leading-[24px] text-Gray-500 font-medium';
-  const active =
-    'bg-Green-50 border-t-[2px] border-Green-900 text-Green-500 font-semibold';
+  const active = 'bg-Green-50 border-t-[2px] border-Green-900 text-Green-500 font-semibold';
   const padding = isIcon ? 'py-[8px] px-[4px]' : 'py-[10px] px-[16px]';
 
   return (
-    <button onClick={onClick}  className={`${padding} ${base} ${isActive ? active : ''}`}>
+    <button onClick={onClick} className={`${padding} ${base} ${isActive ? active : ''}`}>
       {label || icon}
     </button>
   );
@@ -40,9 +39,7 @@ export const Footer = () => {
         <FooterButton
           key={i}
           {...btn}
-          onClick={
-            btn.label ? () => handleTabClick(btn.label!) : handleAddClick
-          }
+          onClick={btn.label ? () => handleTabClick(btn.label!) : handleAddClick}
           isActive={activeTab === btn.label}
         />
       ))}

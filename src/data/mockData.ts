@@ -1,4 +1,4 @@
-import type { Task } from "@/types/declarations"
+import type { Task } from '@/types/declarations';
 
 export const mockData: Task[] = [
   {
@@ -56,4 +56,4 @@ export const mockData: Task[] = [
     dueDate: '30-01-2025',
     estValue: '2,890,000 ₹',
   },
-]
+];

@@ -1,11 +1,6 @@
 import type { ToolbarButtonProps } from '@/types/declarations';
 
-export const ToolbarButton = ({
-  icon,
-  children,
-  onClick,
-  variant = 'default',
-}: ToolbarButtonProps) => {
+export const ToolbarButton = ({ icon, children, onClick, variant = 'default' }: ToolbarButtonProps) => {
   const baseClasses =
     'flex items-center gap-1 p-[8px] rounded-[6px] text-[14px] leading-[20px] transition-colors cursor-pointer';
 
@@ -21,15 +16,8 @@ export const ToolbarButton = ({
   };
 
   return (
-    <button
-      onClick={onClick}
-      className={`${baseClasses} ${getVariantClasses()}`}
-    >
-      {typeof icon === 'string' ? (
-        <img src={icon} alt="" className="h-4 w-4" />
-      ) : (
-        icon
-      )}
+    <button onClick={onClick} className={`${baseClasses} ${getVariantClasses()}`}>
+      {typeof icon === 'string' ? <img src={icon} alt="" className="h-4 w-4" /> : icon}
       <span>{children}</span>
     </button>
   );

@@ -4,7 +4,7 @@ import { SpreadsheetGrid } from '@/components/SpreadsheetGrid';
 
 export const SpreadsheetPage: React.FC = () => {
   return (
-    <div className="bg-White flex h-screen w-full  flex-col font-sans">
+    <div className="bg-White flex h-screen w-full flex-col font-sans">
       <Header />
       <Toolbar />
       <SpreadsheetGrid />

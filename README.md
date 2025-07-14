@@ -1,9 +1,11 @@
 # React Intern Assignment – Spreadsheet Prototype
 
 ## Project Goal
+
 Create a static, front-end-only React prototype that visually matches the provided Figma spreadsheet view.
 
 ## Tech Stack
+
 - React 18 (Vite)
 - TypeScript (strict mode)
 - Tailwind CSS
@@ -11,6 +13,7 @@ Create a static, front-end-only React prototype that visually matches the provid
 - ESLint + Prettier
 
 ## Setup
+
 1. Install dependencies:
    ```sh
    npm install
@@ -26,6 +29,7 @@ Create a static, front-end-only React prototype that visually matches the provid
    ```
 
 ## Progress
+
 - [x] Project scaffolded with Vite + React 18 + TypeScript
 - [x] Tailwind CSS configured
 - [x] ESLint + Prettier set up
@@ -34,5 +38,3 @@ Create a static, front-end-only React prototype that visually matches the provid
 - [ ] Pixel-perfect Figma match
 - [ ] Interactive buttons/tabs
 - [ ] README with trade-offs and decisions
-
-

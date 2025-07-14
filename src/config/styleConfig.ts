@@ -46,22 +46,20 @@ export const actionGroupStyles = {
     textColor: 'text-Gray-800',
     subBg: 'bg-Green-50',
     subTextColor: 'text-Green-700',
-    iconColor:'text-Gray-700',
+    iconColor: 'text-Gray-700',
   },
   answer: {
     bg: 'bg-Purple-200',
     textColor: 'text-Purple-800',
     subBg: 'bg-Purple-100',
     subTextColor: 'text-Purple-600',
-    iconColor:'text-White',
+    iconColor: 'text-White',
   },
   extract: {
     bg: 'bg-Peach-300',
     textColor: 'text-Brown-700',
     subBg: 'bg-Peach-100',
     subTextColor: 'text-Brown-500',
-    iconColor:'text-White',
+    iconColor: 'text-White',
   },
 } as const;
-
- 

@@ -39,11 +39,7 @@ export const Toolbar = () => {
         <div className="bg-Gray-200 h-[24px] w-px" />
 
         {leftButtons.map((button) => (
-          <ToolbarButton
-           key={button.action}
-            onClick={() => handleClick(button.action)}
-            icon={button.icon}
-          >
+          <ToolbarButton key={button.action} onClick={() => handleClick(button.action)} icon={button.icon}>
             {button.label}
           </ToolbarButton>
         ))}
@@ -53,7 +49,7 @@ export const Toolbar = () => {
       <div className="flex items-center gap-[8px]">
         {rightButtons.map((button) => (
           <ToolbarButton
-           key={button.action}
+            key={button.action}
             onClick={() => handleClick(button.action)}
             icon={button.icon}
             variant="outlined"
@@ -62,11 +58,7 @@ export const Toolbar = () => {
           </ToolbarButton>
         ))}
 
-        <ToolbarButton
-          onClick={() => handleClick('New Action')}
-          icon={<ArrowSplit/>}
-          variant="primary"
-        >
+        <ToolbarButton onClick={() => handleClick('New Action')} icon={<ArrowSplit />} variant="primary">
           New Action
         </ToolbarButton>
       </div>

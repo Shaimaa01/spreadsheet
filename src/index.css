@@ -1,56 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-    --color-White: #ffffff;
+  --color-White: #ffffff;
 
-    --color-Gray-50: #f6f6f6;
-    --color-Gray-100: #E2E2E2;
-    --color-Gray-200: #EEEEEE;
-    --color-Gray-300: #CBCBCB;
-    --color-Gray-400: #AFAFAF;
-    --color-Gray-500: #757575;
-    --color-Gray-600: #545454;
-    --color-Gray-700: #A3ACA3;
-    --color-Gray-800: #505450;
-    --color-Gray-950: #121212;
+  --color-Gray-50: #f6f6f6;
+  --color-Gray-100: #e2e2e2;
+  --color-Gray-200: #eeeeee;
+  --color-Gray-300: #cbcbcb;
+  --color-Gray-400: #afafaf;
+  --color-Gray-500: #757575;
+  --color-Gray-600: #545454;
+  --color-Gray-700: #a3aca3;
+  --color-Gray-800: #505450;
+  --color-Gray-950: #121212;
 
-    --color-Green-50: #E8F0E9;
-    --color-Green-100: #D3F2E3;
-    --color-Green-200: #D2E0D4;
-    --color-Green-500: #3E5741;
-    --color-Green-600: #618666;
-    --color-Green-700: #666C66;
-    --color-Green-800: #0A6E3D;
-    --color-Green-900: #4B6A4F;
+  --color-Green-50: #e8f0e9;
+  --color-Green-100: #d3f2e3;
+  --color-Green-200: #d2e0d4;
+  --color-Green-500: #3e5741;
+  --color-Green-600: #618666;
+  --color-Green-700: #666c66;
+  --color-Green-800: #0a6e3d;
+  --color-Green-900: #4b6a4f;
 
-    --color-Purple-100: #EAE3FC;
-    --color-Purple-200: #DCCFFC;
-    --color-Purple-600: #655C80;
-    --color-Purple-800: #463E59;
+  --color-Purple-100: #eae3fc;
+  --color-Purple-200: #dccffc;
+  --color-Purple-600: #655c80;
+  --color-Purple-800: #463e59;
 
-    --color-Peach-100: #FFE9E0;
-    --color-Peach-300: #FAC2AF;
+  --color-Peach-100: #ffe9e0;
+  --color-Peach-300: #fac2af;
 
-    --color-Brown-700: #695149;
-    --color-Brown-500: #8C6C62;
+  --color-Brown-700: #695149;
+  --color-Brown-500: #8c6c62;
 
-    --color-Yellow-100: #FFF3D6;
-    --color-Yellow-800: #85640B;
+  --color-Yellow-100: #fff3d6;
+  --color-Yellow-800: #85640b;
 
-    --color-Platinum-200: #E2E8F0;
-    --color-Platinum-600: #475569;
+  --color-Platinum-200: #e2e8f0;
+  --color-Platinum-600: #475569;
 
-    --color-Red-100: #FFE1DE;
-    --color-Red-700: #C22219;
-    --color-Red-500: #EF4D44;
+  --color-Red-100: #ffe1de;
+  --color-Red-700: #c22219;
+  --color-Red-500: #ef4d44;
 
-    --color-Blue-500: #1A8CFF;
-    --color-Gold-500: #C29210;
+  --color-Blue-500: #1a8cff;
+  --color-Gold-500: #c29210;
 
-    --font-figtree: "Figtree", sans-serif;
+  --font-figtree: 'Figtree', sans-serif;
 }
 
 body {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
