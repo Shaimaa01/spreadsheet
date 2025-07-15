@@ -1,5 +1,5 @@
 import { useReactTable, getCoreRowModel, createColumnHelper, flexRender } from '@tanstack/react-table';
-import { mockData } from '@/data/mockData.ts';
+
 import { useMemo } from 'react';
 import { useDynamicRowCount } from '@/hooks/useDynamicRowCount';
 import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
@@ -15,6 +15,7 @@ import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/dropdown-icon.svg';
 import { type BaseHeaderProps, type ActionGroupHeaderProps, type Task } from '@/types/declarations';
 import { Resizer } from './Resizer';
+import { useFilteredData } from '@/hooks/useFilteredData'; 
 
 const BaseHeader = ({
   header,
@@ -246,16 +247,17 @@ const columns = [
 ];
 
 export const SpreadsheetGrid = () => {
+    const { filteredData, activeTab, onTabClick } = useFilteredData();
   const ROW_HEIGHT = 41;
   const { containerRef, rowCount } = useDynamicRowCount(ROW_HEIGHT);
 
   const displayData = useMemo(() => {
-    if (rowCount === 0) return mockData;
+    if (rowCount === 0) return filteredData;
 
-    const emptyRowCount = Math.max(0, rowCount - mockData.length);
+    const emptyRowCount = Math.max(0, rowCount - filteredData.length);
     const emptyRows = Array.from({ length: emptyRowCount }, () => ({}) as Task);
-    return [...mockData, ...emptyRows];
-  }, [rowCount]);
+    return [...filteredData, ...emptyRows];
+  }, [rowCount ,filteredData]);
 
   const table = useReactTable({
     data: displayData,
@@ -337,7 +339,7 @@ export const SpreadsheetGrid = () => {
           ))}
         </tbody>
       </table>
-      <Footer />
+      <Footer activeTab={activeTab} onTabClick={onTabClick}  />
     </div>
   );
 };

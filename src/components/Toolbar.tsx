@@ -24,10 +24,10 @@ const rightButtons = [
 ];
 
 export const Toolbar = () => {
-  const [isToolbarOpen, setIsToolbarOpen] = useState(true); 
+  const [isToolbarOpen, setIsToolbarOpen] = useState(true);
 
   const handleToolbarToggle = () => {
-    setIsToolbarOpen(!isToolbarOpen); 
+    setIsToolbarOpen(!isToolbarOpen);
     console.log(`Toolbar toggled: ${!isToolbarOpen ? 'Open' : 'Closed'}`);
   };
   const handleClick = (action: string) => console.log(`${action} clicked!`);
@@ -38,7 +38,7 @@ export const Toolbar = () => {
       <div className="flex items-center gap-[8px]">
         <button
           onClick={handleToolbarToggle}
-          className="text-Gray-950 flex items-center gap-[4px] rounded-[4px] p-[8px] text-[14px] leading-[20px] cursor-pointer hover:bg-Gray-50 "
+          className="text-Gray-950 hover:bg-Gray-50 flex cursor-pointer items-center gap-[4px] rounded-[4px] p-[8px] text-[14px] leading-[20px]"
         >
           <span>Tool bar</span>
           <img src={toolbarArrowsIcon} alt="Toolbar Arrows Icon" />
