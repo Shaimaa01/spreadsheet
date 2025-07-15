@@ -1,40 +1,52 @@
-# React Intern Assignment – Spreadsheet Prototype
+# Spreadsheet Prototype
 
-## Project Goal
+A front-end prototype of a spreadsheet interface built with React, TypeScript, and TanStack Table. The application features a dynamic grid with column resizing, keyboard navigation, and data filtering capabilities.
 
-Create a static, front-end-only React prototype that visually matches the provided Figma spreadsheet view.
+## Key Features
+
+- **Interactive Grid:** A spreadsheet grid powered by TanStack Table v8.
+- **Dynamic Rows:** The grid generates empty rows to fill the available viewport height.
+- **Cell Selection & Navigation:** Full cell selection via mouse click and navigation with keyboard arrow keys.
+- **Column Resizing:** Draggable column headers for width adjustment.
+- **Interactive Controls:** Features a collapsible toolbar and data filtering via footer tabs.
 
 ## Tech Stack
 
-- React 18 (Vite)
-- TypeScript (strict mode)
-- Tailwind CSS
-- TanStack React Table (for grid)
-- ESLint + Prettier
+- **Framework:** React 18 (with Vite)
+- **Language:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS (v4)
+- **Table/Grid:** TanStack Table v8
+- **Linting & Formatting:** ESLint + Prettier
+- **Pre-commit Hooks:** Husky
 
 ## Setup
 
-1. Install dependencies:
-   ```sh
-   npm install
-   ```
-2. Start the development server:
-   ```sh
-   npm run dev
-   ```
-3. Lint and type-check:
-   ```sh
-   npm run lint
-   npm run type-check
-   ```
+To get this project running locally:
 
-## Progress
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repo-url>
+    ```
+2.  **Navigate to the project directory:**
+    ```bash
+    cd spreadsheet
+    ```
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-- [x] Project scaffolded with Vite + React 18 + TypeScript
-- [x] Tailwind CSS configured
-- [x] ESLint + Prettier set up
-- [x] TanStack React Table installed
-- [ ] Spreadsheet UI implementation (in progress)
-- [ ] Pixel-perfect Figma match
-- [ ] Interactive buttons/tabs
-- [ ] README with trade-offs and decisions
+## Screenshots
+
+![Spreadsheet Application Screenshot](./src/assets/Spreadsheet-07-15-2025_10_29_PM.png)
+
+---
+
+## Trade-offs and Decisions
+
+- **Custom Font for UI Elements:** The `Figtree` font was used for notification badges to solve inconsistent vertical alignment issues present in standard system fonts. This ensures visual correctness for small, centered text without requiring CSS hacks.
+- **ESLint `exhaustive-deps` Override:** The ESLint warning for the `useMemo` hook that calculates column sizes was intentionally disabled. Using the linter's suggested dependencies caused significant performance issues during column resizing. The current implementation is more performant, and disabling the rule for this specific case was a deliberate choice.

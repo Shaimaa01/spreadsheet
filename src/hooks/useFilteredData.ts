@@ -1,12 +1,11 @@
-
 import { useMemo, useState } from 'react';
 
 import { mockData } from '@/data/mockData';
 
 const statusMap = {
-  'Pending': 'Need to start',
-  'Review': 'In-process',
-  'Arrived': 'Complete',
+  Pending: 'Need to start',
+  Review: 'In-process',
+  Arrived: 'Complete',
 };
 
 export const useFilteredData = () => {
@@ -17,7 +16,7 @@ export const useFilteredData = () => {
       return mockData;
     }
     const targetStatus = statusMap[statusFilter as keyof typeof statusMap];
-    return mockData.filter(task => task.status === targetStatus);
+    return mockData.filter((task) => task.status === targetStatus);
   }, [statusFilter]);
 
   return {

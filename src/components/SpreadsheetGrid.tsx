@@ -15,7 +15,7 @@ import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/dropdown-icon.svg';
 import { type BaseHeaderProps, type ActionGroupHeaderProps, type Task } from '@/types/declarations';
 import { Resizer } from './Resizer';
-import { useFilteredData } from '@/hooks/useFilteredData'; 
+import { useFilteredData } from '@/hooks/useFilteredData';
 
 const BaseHeader = ({
   header,
@@ -247,7 +247,7 @@ const columns = [
 ];
 
 export const SpreadsheetGrid = () => {
-    const { filteredData, activeTab, onTabClick } = useFilteredData();
+  const { filteredData, activeTab, onTabClick } = useFilteredData();
   const ROW_HEIGHT = 41;
   const { containerRef, rowCount } = useDynamicRowCount(ROW_HEIGHT);
 
@@ -257,7 +257,7 @@ export const SpreadsheetGrid = () => {
     const emptyRowCount = Math.max(0, rowCount - filteredData.length);
     const emptyRows = Array.from({ length: emptyRowCount }, () => ({}) as Task);
     return [...filteredData, ...emptyRows];
-  }, [rowCount ,filteredData]);
+  }, [rowCount, filteredData]);
 
   const table = useReactTable({
     data: displayData,
@@ -339,7 +339,7 @@ export const SpreadsheetGrid = () => {
           ))}
         </tbody>
       </table>
-      <Footer activeTab={activeTab} onTabClick={onTabClick}  />
+      <Footer activeTab={activeTab} onTabClick={onTabClick} />
     </div>
   );
 };
