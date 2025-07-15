@@ -36,7 +36,7 @@ export const useKeyboardNavigation = (table: Table<Task>) => {
 
       setActiveCell({ row: newRow, col: newCol });
     },
-    [activeCell, table],
+    [activeCell, table]
   );
 
   return { activeCell, setActiveCell, handleKeyDown };

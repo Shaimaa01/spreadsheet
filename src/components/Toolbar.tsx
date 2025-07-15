@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ToolbarButton } from './ToolbarButton';
 import toolbarArrowsIcon from '@/assets/toolbar-arrows-icon.svg';
 import eye from '@/assets/eye-icon.svg';
@@ -23,6 +24,12 @@ const rightButtons = [
 ];
 
 export const Toolbar = () => {
+  const [isToolbarOpen, setIsToolbarOpen] = useState(true); 
+
+  const handleToolbarToggle = () => {
+    setIsToolbarOpen(!isToolbarOpen); 
+    console.log(`Toolbar toggled: ${!isToolbarOpen ? 'Open' : 'Closed'}`);
+  };
   const handleClick = (action: string) => console.log(`${action} clicked!`);
 
   return (
@@ -30,19 +37,22 @@ export const Toolbar = () => {
       {/* Left Side */}
       <div className="flex items-center gap-[8px]">
         <button
-          onClick={() => handleClick('Tool bar')}
-          className="text-Gray-950 flex items-center gap-[4px] rounded-[4px] p-[8px] text-[14px] leading-[20px]"
+          onClick={handleToolbarToggle}
+          className="text-Gray-950 flex items-center gap-[4px] rounded-[4px] p-[8px] text-[14px] leading-[20px] cursor-pointer hover:bg-Gray-50 "
         >
           <span>Tool bar</span>
           <img src={toolbarArrowsIcon} alt="Toolbar Arrows Icon" />
         </button>
         <div className="bg-Gray-200 h-[24px] w-px" />
-
-        {leftButtons.map((button) => (
-          <ToolbarButton key={button.action} onClick={() => handleClick(button.action)} icon={button.icon}>
-            {button.label}
-          </ToolbarButton>
-        ))}
+        {isToolbarOpen && (
+          <>
+            {leftButtons.map((button) => (
+              <ToolbarButton key={button.action} onClick={() => handleClick(button.action)} icon={button.icon}>
+                {button.label}
+              </ToolbarButton>
+            ))}
+          </>
+        )}
       </div>
 
       {/* Right Side */}

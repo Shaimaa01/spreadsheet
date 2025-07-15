@@ -2,7 +2,7 @@ import { actionGroupStyles } from '@/config/styleConfig';
 import type { Header } from '@tanstack/react-table';
 
 export type BaseHeaderProps = {
-  header: Header<Task, unknown>; 
+  header: Header<Task, unknown>;
   icon?: string;
   label: string;
   hasDropdown?: boolean;
@@ -12,7 +12,7 @@ export type BaseHeaderProps = {
 };
 
 export type ActionGroupHeaderProps = {
-   header: Header<Task, unknown>; 
+  header: Header<Task, unknown>;
   action: keyof typeof actionGroupStyles;
   label: string;
   icon?: React.ReactNode;

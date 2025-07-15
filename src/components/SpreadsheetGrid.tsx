@@ -39,7 +39,9 @@ const BaseHeader = ({
 const ActionGroupHeader = ({ header, action, label, icon = <ArrowSplit /> }: ActionGroupHeaderProps) => {
   const config = actionGroupStyles[action];
   return (
-    <button className={`${config.bg} relative group flex h-[32px] w-full items-center justify-center gap-[8px] px-[16px]`}>
+    <button
+      className={`${config.bg} group relative flex h-[32px] w-full items-center justify-center gap-[8px] px-[16px]`}
+    >
       <div className={`${config.iconColor}`}>{icon}</div>
       <span className={`${config.textColor} text-[14px] leading-[20px] font-medium`}>{label}</span>
       <img src={dots} alt="dots icon" />
@@ -71,7 +73,7 @@ const columns = [
   columnHelper.group({
     id: 'view-info',
     header: (props) => (
-      <div className="bg-Gray-100 relative group flex h-[32px] items-center gap-[8px] px-[8px]">
+      <div className="bg-Gray-100 group relative flex h-[32px] items-center gap-[8px] px-[8px]">
         <div className="bg-Gray-200 text-Gray-600 flex items-center gap-[4px] rounded-[4px] p-[4px] text-[12px] leading-[16px]">
           <img src={link} alt="link icon" />
           <span>Q3 Financial Overview</span>
