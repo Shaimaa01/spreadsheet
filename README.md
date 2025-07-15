@@ -25,7 +25,7 @@ To get this project running locally:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/Shaimaa01/spreadsheet.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
