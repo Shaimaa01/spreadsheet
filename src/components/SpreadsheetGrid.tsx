@@ -14,33 +14,36 @@ import { ArrowSplit } from '@/icons/ArrowSplit';
 import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/dropdown-icon.svg';
 import { type BaseHeaderProps, type ActionGroupHeaderProps, type Task } from '@/types/declarations';
+import { Resizer } from './Resizer';
 
 const BaseHeader = ({
+  header,
   icon,
   label,
   hasDropdown = true,
   bgColor = 'bg-Gray-200',
   textColor = 'text-Gray-500',
-  width = 'w-[124px]',
 }: BaseHeaderProps) => (
   <div
-    className={`${bgColor} ${textColor} hover:bg-Gray-50 flex h-[32px] ${width} items-center justify-between px-[8px] text-[12px] leading-[16px] font-semibold transition-colors`}
+    className={`${bgColor} ${textColor} hover:bg-Gray-50 group relative flex h-[32px] w-full items-center justify-between px-[8px] text-[12px] leading-[16px] font-semibold transition-colors`}
   >
     <div className="flex items-center gap-[4px]">
       {icon && <img src={icon} alt={`${label} icon`} />}
       <span>{label}</span>
     </div>
     {hasDropdown && <img src={dropdown} alt="dropdown icon" />}
+    <Resizer header={header} />
   </div>
 );
 
-const ActionGroupHeader = ({ action, label, icon = <ArrowSplit /> }: ActionGroupHeaderProps) => {
+const ActionGroupHeader = ({ header, action, label, icon = <ArrowSplit /> }: ActionGroupHeaderProps) => {
   const config = actionGroupStyles[action];
   return (
-    <button className={`${config.bg} flex h-[32px] w-full items-center justify-center gap-[8px] px-[16px]`}>
+    <button className={`${config.bg} relative group flex h-[32px] w-full items-center justify-center gap-[8px] px-[16px]`}>
       <div className={`${config.iconColor}`}>{icon}</div>
       <span className={`${config.textColor} text-[14px] leading-[20px] font-medium`}>{label}</span>
       <img src={dots} alt="dots icon" />
+      <Resizer header={header} />
     </button>
   );
 };
@@ -54,10 +57,9 @@ const columns = [
     columns: [
       columnHelper.display({
         id: 'row-number',
+        size: 32,
         header: () => (
-          <div className="text-Gray-400 bg-Gray-200 border-Gray-100 flex h-[32px] w-[32px] items-center justify-center">
-            #
-          </div>
+          <div className="text-Gray-400 bg-Gray-200 border-Gray-100 flex h-[32px] items-center justify-center">#</div>
         ),
         cell: (info) => (
           <div className="text-Gray-500 text-center text-[14px] leading-[20px]">{info.row.index + 1}</div>
@@ -68,8 +70,8 @@ const columns = [
 
   columnHelper.group({
     id: 'view-info',
-    header: () => (
-      <div className="bg-Gray-100 flex h-[32px] items-center gap-[8px] px-[8px]">
+    header: (props) => (
+      <div className="bg-Gray-100 relative group flex h-[32px] items-center gap-[8px] px-[8px]">
         <div className="bg-Gray-200 text-Gray-600 flex items-center gap-[4px] rounded-[4px] p-[4px] text-[12px] leading-[16px]">
           <img src={link} alt="link icon" />
           <span>Q3 Financial Overview</span>
@@ -78,18 +80,23 @@ const columns = [
         <button className="cursor-pointer" onClick={() => console.log('Refresh clicked')}>
           <img src={refresh} alt="Refresh" />
         </button>
+
+        <Resizer header={props.header} />
       </div>
     ),
 
     columns: [
       columnHelper.accessor('jobRequest', {
-        header: () => <BaseHeader icon={headerIcons.jobRequest} label="Job Request" width="max-w-[256px]" />,
+        size: 256,
+        header: (props) => <BaseHeader header={props.header} icon={headerIcons.jobRequest} label="Job Request" />,
       }),
       columnHelper.accessor('submitted', {
-        header: () => <BaseHeader icon={headerIcons.submitted} label="Submitted" />,
+        size: 124,
+        header: (props) => <BaseHeader header={props.header} icon={headerIcons.submitted} label="Submitted" />,
       }),
       columnHelper.accessor('status', {
-        header: () => <BaseHeader icon={headerIcons.status} label="Status" />,
+        size: 124,
+        header: (props) => <BaseHeader header={props.header} icon={headerIcons.status} label="Status" />,
         cell: (info) => {
           const status = info.getValue() as Task['status'];
           const config = statusConfig[status as keyof typeof statusConfig] || {
@@ -109,7 +116,8 @@ const columns = [
         },
       }),
       columnHelper.accessor('submitter', {
-        header: () => <BaseHeader icon={headerIcons.submitter} label="Submitter" />,
+        size: 124,
+        header: (props) => <BaseHeader header={props.header} icon={headerIcons.submitter} label="Submitter" />,
       }),
     ],
   }),
@@ -119,18 +127,21 @@ const columns = [
     header: () => <div className="bg-White h-[32px] w-[124px]"></div>,
     columns: [
       columnHelper.accessor('url', {
-        header: () => <BaseHeader icon={headerIcons.url} label="URL" />,
+        size: 124,
+        header: (props) => <BaseHeader header={props.header} icon={headerIcons.url} label="URL" />,
       }),
     ],
   }),
 
   columnHelper.group({
     id: 'abc-action',
-    header: () => <ActionGroupHeader action="abc" label="ABC" />,
+    header: (props) => <ActionGroupHeader header={props.header} action="abc" label="ABC" />,
     columns: [
       columnHelper.accessor('assigned', {
-        header: () => (
+        size: 124,
+        header: (props) => (
           <BaseHeader
+            header={props.header}
             icon={headerIcons.assigned}
             label="Assigned"
             bgColor="bg-Green-50"
@@ -144,11 +155,18 @@ const columns = [
 
   columnHelper.group({
     id: 'answer-action',
-    header: () => <ActionGroupHeader action="answer" label="Answer a question" />,
+    header: (props) => <ActionGroupHeader header={props.header} action="answer" label="Answer a question" />,
     columns: [
       columnHelper.accessor('priority', {
-        header: () => (
-          <BaseHeader label="Priority" bgColor="bg-Purple-100" textColor="text-Purple-600" hasDropdown={false} />
+        size: 124,
+        header: (props) => (
+          <BaseHeader
+            header={props.header}
+            label="Priority"
+            bgColor="bg-Purple-100"
+            textColor="text-Purple-600"
+            hasDropdown={false}
+          />
         ),
         cell: (info) => {
           const priority = info.getValue() as keyof typeof priorityConfig;
@@ -160,8 +178,10 @@ const columns = [
       }),
 
       columnHelper.accessor('dueDate', {
-        header: () => (
+        size: 124,
+        header: (props) => (
           <BaseHeader
+            header={props.header}
             label="Due Date"
             bgColor="bg-Purple-100"
             textColor="text-Purple-600"
@@ -175,11 +195,18 @@ const columns = [
 
   columnHelper.group({
     id: 'extract-action',
-    header: () => <ActionGroupHeader action="extract" label="Extract" />,
+    header: (props) => <ActionGroupHeader header={props.header} action="extract" label="Extract" />,
     columns: [
       columnHelper.accessor('estValue', {
-        header: () => (
-          <BaseHeader label="Est. Value" bgColor="bg-Peach-100" textColor="text-Brown-500" hasDropdown={false} />
+        size: 124,
+        header: (props) => (
+          <BaseHeader
+            header={props.header}
+            label="Est. Value"
+            bgColor="bg-Peach-100"
+            textColor="text-Brown-500"
+            hasDropdown={false}
+          />
         ),
         cell: (info) => {
           const value = info.getValue() as string;
@@ -202,13 +229,14 @@ const columns = [
   columnHelper.group({
     id: 'plus-group',
     header: () => (
-      <button className="bg-Gray-200 flex h-[32px] w-[124px] items-center justify-center">
+      <button className="bg-Gray-200 flex h-[32px] w-full items-center justify-center">
         <AddIcon />
       </button>
     ),
     columns: [
       columnHelper.display({
         id: 'row-plus',
+        size: 124,
         header: () => <div className=""></div>,
       }),
     ],
@@ -230,8 +258,24 @@ export const SpreadsheetGrid = () => {
   const table = useReactTable({
     data: displayData,
     columns,
+    columnResizeMode: 'onChange',
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const columnSizing = table.getState().columnSizing;
+  const columnSizingInfo = table.getState().columnSizingInfo;
+
+  const columnSizeVars = useMemo(() => {
+    const headers = table.getFlatHeaders();
+    const colSizes: { [key: string]: number } = {};
+    for (let i = 0; i < headers.length; i++) {
+      const header = headers[i]!;
+      colSizes[`--header-${header.id}-size`] = header.getSize();
+      colSizes[`--col-${header.column.id}-size`] = header.column.getSize();
+    }
+    return colSizes;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columnSizing, columnSizingInfo]);
 
   const { activeCell, setActiveCell, handleKeyDown } = useKeyboardNavigation(table);
   const getActiveCellStyles = (rowIndex: number, colIndex: number) => {
@@ -247,19 +291,28 @@ export const SpreadsheetGrid = () => {
       tabIndex={0}
       className="bg-Gray-50 relative flex-grow outline-none"
     >
-      <table className="bg-White w-fit border-collapse">
+      <table
+        style={{
+          ...columnSizeVars,
+          width: table.getTotalSize(),
+        }}
+        className="bg-White w-fit border-collapse"
+      >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="border-Gray-300 border-b">
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  className="border-Gray-300 border-r last:border-dashed nth-last-2:border-dashed"
-                >
-                  {flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
+              {headerGroup.headers.map((header) => {
+                return (
+                  <th
+                    style={{ width: `calc(var(--header-${header.id}-size) * 1px)` }}
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className="border-Gray-300 border-r last:border-dashed nth-last-2:border-dashed"
+                  >
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
@@ -268,6 +321,7 @@ export const SpreadsheetGrid = () => {
             <tr key={row.id} className="border-Gray-300 border-b">
               {row.getVisibleCells().map((cell, colIndex) => (
                 <td
+                  style={{ width: `calc(var(--header-${cell.column.id}-size) * 1px)` }}
                   key={cell.id}
                   onClick={() => setActiveCell({ row: rowIndex, col: colIndex })}
                   className={`border-Gray-300 text-Gray-950 truncate border-r p-[8px] text-[12px] leading-[16px] last:border-dashed nth-last-2:border-dashed ${
