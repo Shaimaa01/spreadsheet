@@ -1,10 +1,10 @@
-import briefcase from '@/assets/briefcase-icon.png';
-import calender from '@/assets/calendar-icon.png';
-import chevron from '@/assets/chevron-icon.png';
-import person from '@/assets/person-icon.png';
-import globe from '@/assets/globe-icon.png';
-import emoji from '@/assets/emoji-icon.png';
-import dropdown from '@/assets/dropdown-icon.svg';
+import briefcase from '@/assets/table/briefcase-icon.png';
+import calender from '@/assets/table/calendar-icon.png';
+import chevron from '@/assets/table/chevron-icon.png';
+import person from '@/assets/table/person-icon.png';
+import globe from '@/assets/table/globe-icon.png';
+import emoji from '@/assets/table/emoji-icon.png';
+import dropdown from '@/assets/table/dropdown-icon.svg';
 
 export const headerIcons = {
   jobRequest: briefcase,

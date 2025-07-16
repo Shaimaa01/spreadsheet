@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import rectangular from '@/assets/rectangular-icon.svg';
-import arrow from '@/assets/arrow-icon.svg';
+import rectangular from '@/assets/header/rectangular-icon.svg';
+import arrow from '@/assets/header/arrow-icon.svg';
 import dots from '@/assets/dots-icon.svg';
-import search from '@/assets/search-icon.svg';
-import alert from '@/assets/alert-icon.svg';
-import avatar from '@/assets/avatar.png';
+import search from '@/assets/header/search-icon.svg';
+import alert from '@/assets/header/alert-icon.svg';
+import avatar from '@/assets/header/avatar.png';
 
 type NotificationBadgeProps = {
   count: number;

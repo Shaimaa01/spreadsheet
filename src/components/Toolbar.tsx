@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { ToolbarButton } from './ToolbarButton';
-import toolbarArrowsIcon from '@/assets/toolbar-arrows-icon.svg';
-import eye from '@/assets/eye-icon.svg';
-import sort from '@/assets/sort-icon.svg';
-import filter from '@/assets/filter-icon.svg';
-import cellView from '@/assets/cellView-icon.svg';
-import importIcon from '@/assets/import-icon.svg';
-import exportIcon from '@/assets/export-icon.svg';
-import share from '@/assets/share-icon.svg';
+import toolbarArrowsIcon from '@/assets/toolbar/toolbar-arrows-icon.svg';
+import eye from '@/assets/toolbar/eye-icon.svg';
+import sort from '@/assets/toolbar/sort-icon.svg';
+import filter from '@/assets/toolbar/filter-icon.svg';
+import cellView from '@/assets/toolbar/cellView-icon.svg';
+import importIcon from '@/assets/toolbar/import-icon.svg';
+import exportIcon from '@/assets/toolbar/export-icon.svg';
+import share from '@/assets/toolbar/share-icon.svg';
 import { ArrowSplit } from '@/icons/ArrowSplit';
 
 const leftButtons = [

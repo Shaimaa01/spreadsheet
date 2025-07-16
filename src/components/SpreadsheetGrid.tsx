@@ -9,11 +9,11 @@ import { extractCurrency } from '@/utils/extractCurrency';
 import { headerIcons } from '@/config/iconConfig';
 import AddIcon from '@/icons/AddIcon';
 import { Footer } from './Footer';
-import link from '@/assets/link-icon.svg';
-import refresh from '@/assets/refresh-icon.svg';
+import link from '@/assets/table/link-icon.svg';
+import refresh from '@/assets/table/refresh-icon.svg';
 import { ArrowSplit } from '@/icons/ArrowSplit';
 import dots from '@/assets/dots-icon.svg';
-import dropdown from '@/assets/dropdown-icon.svg';
+import dropdown from '@/assets/table/dropdown-icon.svg';
 import { Resizer } from './Resizer';
 import { useFilteredData } from '@/hooks/useFilteredData';
 
