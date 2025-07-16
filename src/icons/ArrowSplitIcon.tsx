@@ -1,4 +1,4 @@
-export const ArrowSplit = ({ className }: { className?: string }) => (
+export const ArrowSplitIcon = ({ className }: { className?: string }) => (
   <svg
     width="16"
     height="16"

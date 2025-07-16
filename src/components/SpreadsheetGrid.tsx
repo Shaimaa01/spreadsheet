@@ -11,7 +11,7 @@ import AddIcon from '@/icons/AddIcon';
 import { Footer } from './Footer';
 import link from '@/assets/table/link-icon.svg';
 import refresh from '@/assets/table/refresh-icon.svg';
-import { ArrowSplit } from '@/icons/ArrowSplit';
+import { ArrowSplitIcon } from '@/icons/ArrowSplitIcon';
 import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/table/dropdown-icon.svg';
 import { Resizer } from './Resizer';
@@ -37,7 +37,7 @@ const BaseHeader = ({
   </div>
 );
 
-const ActionGroupHeader = ({ header, action, label, icon = <ArrowSplit /> }: ActionGroupHeaderProps) => {
+const ActionGroupHeader = ({ header, action, label, icon = <ArrowSplitIcon/> }: ActionGroupHeaderProps) => {
   const config = actionGroupStyles[action];
   return (
     <button
