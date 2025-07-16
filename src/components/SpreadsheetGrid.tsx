@@ -1,10 +1,11 @@
 import { useReactTable, getCoreRowModel, createColumnHelper, flexRender } from '@tanstack/react-table';
-
-import { useMemo } from 'react';
+import { statusConfig, priorityConfig, cellSizeConfig, actionGroupStyles } from '@/config/styleConfig';
+import { type BaseHeaderProps, type ActionGroupHeaderProps, type Task } from '@/types/declarations';
+import type { Header } from '@tanstack/react-table';
+import { useColumnSizeVars } from '@/hooks/useColumnSizeVars';
 import { useDynamicRowCount } from '@/hooks/useDynamicRowCount';
 import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 import { extractCurrency } from '@/utils/extractCurrency';
-import { statusConfig, priorityConfig, cellSizeConfig, actionGroupStyles } from '@/config/styleConfig';
 import { headerIcons } from '@/config/iconConfig';
 import AddIcon from '@/icons/AddIcon';
 import { Footer } from './Footer';
@@ -13,7 +14,6 @@ import refresh from '@/assets/refresh-icon.svg';
 import { ArrowSplit } from '@/icons/ArrowSplit';
 import dots from '@/assets/dots-icon.svg';
 import dropdown from '@/assets/dropdown-icon.svg';
-import { type BaseHeaderProps, type ActionGroupHeaderProps, type Task } from '@/types/declarations';
 import { Resizer } from './Resizer';
 import { useFilteredData } from '@/hooks/useFilteredData';
 
@@ -51,6 +51,19 @@ const ActionGroupHeader = ({ header, action, label, icon = <ArrowSplit /> }: Act
   );
 };
 
+const ViewInfoHeader = ({ header }: { header: Header<Task, unknown> }) => (
+  <div className="bg-Gray-100 group relative flex h-[32px] items-center gap-[8px] px-[8px]">
+    <div className="bg-Gray-200 text-Gray-600 flex items-center gap-[4px] rounded-[4px] p-[4px] text-[12px] leading-[16px]">
+      <img src={link} alt="link icon" />
+      <span>Q3 Financial Overview</span>
+    </div>
+    <button className="cursor-pointer" onClick={() => console.log('Refresh clicked')}>
+      <img src={refresh} alt="Refresh" />
+    </button>
+    <Resizer header={header} />
+  </div>
+);
+
 const columnHelper = createColumnHelper<Task>();
 
 const columns = [
@@ -73,20 +86,7 @@ const columns = [
 
   columnHelper.group({
     id: 'view-info',
-    header: (props) => (
-      <div className="bg-Gray-100 group relative flex h-[32px] items-center gap-[8px] px-[8px]">
-        <div className="bg-Gray-200 text-Gray-600 flex items-center gap-[4px] rounded-[4px] p-[4px] text-[12px] leading-[16px]">
-          <img src={link} alt="link icon" />
-          <span>Q3 Financial Overview</span>
-        </div>
-
-        <button className="cursor-pointer" onClick={() => console.log('Refresh clicked')}>
-          <img src={refresh} alt="Refresh" />
-        </button>
-
-        <Resizer header={props.header} />
-      </div>
-    ),
+    header: (props) => <ViewInfoHeader header={props.header} />,
 
     columns: [
       columnHelper.accessor('jobRequest', {
@@ -248,39 +248,14 @@ const columns = [
 
 export const SpreadsheetGrid = () => {
   const { filteredData, activeTab, onTabClick } = useFilteredData();
-  const ROW_HEIGHT = 41;
-  const { containerRef, rowCount } = useDynamicRowCount(ROW_HEIGHT);
-
-  const displayData = useMemo(() => {
-    if (rowCount === 0) return filteredData;
-
-    const emptyRowCount = Math.max(0, rowCount - filteredData.length);
-    const emptyRows = Array.from({ length: emptyRowCount }, () => ({}) as Task);
-    return [...filteredData, ...emptyRows];
-  }, [rowCount, filteredData]);
-
+  const { containerRef, displayData } = useDynamicRowCount(filteredData);
   const table = useReactTable({
     data: displayData,
     columns,
     columnResizeMode: 'onChange',
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const columnSizing = table.getState().columnSizing;
-  const columnSizingInfo = table.getState().columnSizingInfo;
-
-  const columnSizeVars = useMemo(() => {
-    const headers = table.getFlatHeaders();
-    const colSizes: { [key: string]: number } = {};
-    for (let i = 0; i < headers.length; i++) {
-      const header = headers[i]!;
-      colSizes[`--header-${header.id}-size`] = header.getSize();
-      colSizes[`--col-${header.column.id}-size`] = header.column.getSize();
-    }
-    return colSizes;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnSizing, columnSizingInfo]);
-
+  const columnSizeVars = useColumnSizeVars(table);
   const { activeCell, setActiveCell, handleKeyDown } = useKeyboardNavigation(table);
   const getActiveCellStyles = (rowIndex: number, colIndex: number) => {
     if (!activeCell) return '';
@@ -300,7 +275,7 @@ export const SpreadsheetGrid = () => {
           ...columnSizeVars,
           width: table.getTotalSize(),
         }}
-        className="bg-White w-fit border-collapse"
+        className="bg-White border-Gray-300 ml-[1px] w-fit border-collapse border-l"
       >
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

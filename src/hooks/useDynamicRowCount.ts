@@ -1,6 +1,7 @@
-import { useState, useLayoutEffect, useRef } from 'react';
+import { useState, useLayoutEffect, useRef, useMemo } from 'react';
 
-export const useDynamicRowCount = (rowHeight: number) => {
+export const useDynamicRowCount = <T>(filteredData: T[]) => {
+  const ROW_HEIGHT = 41;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [rowCount, setRowCount] = useState(0);
 
@@ -10,7 +11,7 @@ export const useDynamicRowCount = (rowHeight: number) => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         const containerHeight = entry.contentRect.height;
-        const calculatedRows = Math.floor(containerHeight / rowHeight);
+        const calculatedRows = Math.floor(containerHeight / ROW_HEIGHT);
         setRowCount(calculatedRows);
       }
     });
@@ -18,7 +19,15 @@ export const useDynamicRowCount = (rowHeight: number) => {
     resizeObserver.observe(containerRef.current);
 
     return () => resizeObserver.disconnect();
-  }, [rowHeight]);
+  }, []);
 
-  return { containerRef, rowCount };
+  const displayData = useMemo(() => {
+    if (rowCount === 0) return filteredData;
+
+    const emptyRowCount = Math.max(0, rowCount - filteredData.length);
+    const emptyRows = Array.from({ length: emptyRowCount }, () => ({}) as T);
+    return [...filteredData, ...emptyRows];
+  }, [rowCount, filteredData]);
+
+  return { containerRef, displayData };
 };
