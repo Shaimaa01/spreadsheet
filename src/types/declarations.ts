@@ -18,21 +18,6 @@ export type ActionGroupHeaderProps = {
   icon?: React.ReactNode;
 };
 
-export type FooterButtonProps = {
-  label?: string;
-  icon?: React.ReactNode;
-  isActive?: boolean;
-  isIcon?: boolean;
-  onClick?: () => void;
-};
-
-export type ToolbarButtonProps = {
-  icon: string | React.ReactNode;
-  children: React.ReactNode;
-  onClick: () => void;
-  variant?: 'default' | 'primary' | 'outlined';
-};
-
 export type Task = {
   jobRequest: string;
   submitted: string;
@@ -43,20 +28,6 @@ export type Task = {
   priority: 'High' | 'Medium' | 'Low';
   dueDate: string;
   estValue: string;
-};
-
-export type NotificationBadgeProps = {
-  count: number;
-};
-
-export type SearchInputProps = {
-  onSearch: (value: string) => void;
-};
-
-export type UserProfileProps = {
-  name: string;
-  email: string;
-  avatarSrc: string;
 };
 
 export type ActiveCell = {

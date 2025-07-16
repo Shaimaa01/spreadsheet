@@ -1,9 +1,16 @@
 import AddIcon from '@/icons/AddIcon';
-import { type FooterButtonProps } from '@/types/declarations';
 
 type FooterProps = {
   activeTab: string;
   onTabClick: (label: string) => void;
+};
+
+type FooterButtonProps = {
+  label?: string;
+  icon?: React.ReactNode;
+  isActive?: boolean;
+  isIcon?: boolean;
+  onClick?: () => void;
 };
 
 const buttons = [

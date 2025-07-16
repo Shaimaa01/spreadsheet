@@ -5,7 +5,20 @@ import dots from '@/assets/dots-icon.svg';
 import search from '@/assets/search-icon.svg';
 import alert from '@/assets/alert-icon.svg';
 import avatar from '@/assets/avatar.png';
-import { type NotificationBadgeProps, type SearchInputProps, type UserProfileProps } from '@/types/declarations';
+
+type NotificationBadgeProps = {
+  count: number;
+};
+
+type SearchInputProps = {
+  onSearch: (value: string) => void;
+};
+
+type UserProfileProps = {
+  name: string;
+  email: string;
+  avatarSrc: string;
+};
 
 const NotificationBadge = ({ count }: NotificationBadgeProps) => {
   if (count === 0) return null;
