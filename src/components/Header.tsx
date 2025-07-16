@@ -20,6 +20,16 @@ type UserProfileProps = {
   avatarSrc: string;
 };
 
+type HeaderBreadcrumbsProps = {
+  handleActionClick: (action: string) => void;
+};
+
+type HeaderActionsProps = {
+  notificationCount: number;
+  handleSearch: (value: string) => void;
+  handleActionClick: (action: string) => void;
+};
+
 const NotificationBadge = ({ count }: NotificationBadgeProps) => {
   if (count === 0) return null;
 
@@ -77,6 +87,40 @@ const UserProfile = ({ name, email, avatarSrc }: UserProfileProps) => {
   );
 };
 
+const HeaderBreadcrumbs = ({ handleActionClick }: HeaderBreadcrumbsProps) => {
+  return (
+    <div className="flex items-center gap-[16px]">
+      <img src={rectangular} alt="rectangular icon" className="h-[16px] w-[20px]" />
+
+      <div className="text-Gray-400 flex items-center gap-[8px] text-[14px] leading-[20px] font-medium tracking-[0%]">
+        <span>Workspace</span>
+        <img src={arrow} alt="arrow icon" />
+        <span>Folder 2</span>
+        <img src={arrow} alt="arrow icon" />
+        <span className="text-Gray-950">Spreadsheet 3</span>
+        <button onClick={() => handleActionClick('More options')} className="hover:text-Gray-900 cursor-pointer">
+          <img src={dots} alt="dots icon" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const HeaderActions = ({ notificationCount, handleSearch, handleActionClick }: HeaderActionsProps) => {
+  return (
+    <div className="flex items-center gap-[4px]">
+      <SearchInput onSearch={handleSearch} />
+
+      <button onClick={() => handleActionClick('Notifications')} className="relative p-[8px]">
+        <NotificationBadge count={notificationCount} />
+        <img src={alert} alt="alert icon " />
+      </button>
+
+      <UserProfile name={'John Doe'} email={'john.doe@companyname.com'} avatarSrc={avatar} />
+    </div>
+  );
+};
+
 export const Header = () => {
   const notificationCount = 2;
 
@@ -90,33 +134,12 @@ export const Header = () => {
 
   return (
     <header className="border-Gray-200 flex h-[56px] w-full items-center justify-between border-b px-[16px] py-[8px]">
-      {/* Left Side: Breadcrumbs */}
-      <div className="flex items-center gap-[16px]">
-        <img src={rectangular} alt="rectangular icon" className="h-[16px] w-[20px]" />
-
-        <div className="text-Gray-400 flex items-center gap-[8px] text-[14px] leading-[20px] font-medium tracking-[0%]">
-          <span>Workspace</span>
-          <img src={arrow} alt="arrow icon" />
-          <span>Folder 2</span>
-          <img src={arrow} alt="arrow icon" />
-          <span className="text-Gray-950">Spreadsheet 3</span>
-          <button onClick={() => handleActionClick('More options')} className="hover:text-Gray-900 cursor-pointer">
-            <img src={dots} alt="dots icon" />
-          </button>
-        </div>
-      </div>
-
-      {/* Right Side: Actions & User */}
-      <div className="flex items-center gap-[4px]">
-        <SearchInput onSearch={handleSearch} />
-
-        <button onClick={() => handleActionClick('Notifications')} className="relative p-[8px]">
-          <NotificationBadge count={notificationCount} />
-          <img src={alert} alt="alert icon " />
-        </button>
-
-        <UserProfile name={'John Doe'} email={'john.doe@companyname.com'} avatarSrc={avatar} />
-      </div>
+      <HeaderBreadcrumbs handleActionClick={handleActionClick} />
+      <HeaderActions
+        notificationCount={notificationCount}
+        handleSearch={handleSearch}
+        handleActionClick={handleActionClick}
+      />
     </header>
   );
 };
